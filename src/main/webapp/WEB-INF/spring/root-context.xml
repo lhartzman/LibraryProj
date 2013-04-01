@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+<!-- 	<context:annotation-config /> -->
+<!--     <tx:annotation-driven transaction-manager="transactionManager"/> -->
+      
+<!--     <context:component-scan base-package="com.hartzman.library.service" /> -->
+<!--     <context:component-scan base-package="com.hartzman.library.dao" /> -->
+    
+  <context:property-placeholder location="WEB-INF/classes/META-INF/spring/database.properties" />
+  
+<!--     <bean id="dataSource" 
+            class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+  
+            Hibernate SessionFactory
+        <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+            <property name="dataSource" ref="dataSource"></property>
+            <property name="annotatedClasses">
+                <list>
+                    <value>com.hartzman.library.entity.User</value>
+                    <value>com.hartzman.library.entity.LibraryItem</value>
+                    <value>com.hartzman.library.entity.BookItem</value>
+                    <value>com.hartzman.library.entity.PeriodicalItem</value>
+                    <value>com.hartzman.library.entity.DigitalItem</value>
+                    <value>com.hartzman.library.entity.LibraryCard</value>
+                    <value>com.hartzman.library.entity.License</value>
+                </list>
+            </property>
+            <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop> 
+                <prop key="hibernate.connection.driver_class">${jdbc.driverClassName}</prop>
+                <prop key="hibernate.connection.url">${jdbc.url}</prop>
+                <prop key="hibernate.connection.username">${jdbc.username}</prop>
+                <prop key="hibernate.connection.password">${jdbc.password}</prop>
+                <prop key="hibernate.connection.pool_size">1</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop> 
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+                </props>
+            </property>
+        </bean>
+        
+        <bean id="userDAO" class="com.hartzman.library.dao.UserDAOImpl">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+        
+        <bean id="itemDAO" class="com.hartzman.library.dao.ItemDAOImpl">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+        
+      <bean id="transactionManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+        
+       </bean>
+       
+    
+ -->
+
+    <import resource="datasource.xml" />        
+    <import resource="Hibernate.xml" />
+    
+
+</beans>
