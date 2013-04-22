@@ -1,5 +1,6 @@
 package com.hartzman.library.controller;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -39,9 +40,23 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * Initialize a new user so object exists before first call
+	 * @return user
+	 */
+	@ModelAttribute("user")
+	public User initUser()
+	{
+		User user = new User();
+		user.setEmail("");
+		user.setFirstname("");
+		user.setLastname("");
+		return user;
+	}
+	
 
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * brings up the admin console for users
 	 */
 	@RequestMapping(value = "admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model) {
@@ -62,6 +77,15 @@ public class UserController {
 		return new ModelAndView("newuser", "model", user);
 	}
 	
+	/**
+	 * Adds a new user from the 'modelattribute'
+	 * 
+	 * @param locale
+	 * @param model
+	 * @param user
+	 * @param status
+	 * @return
+	 */
 	@RequestMapping(value="/newuser", method=RequestMethod.POST)
 	public String addNewUser(Locale locale, Model model, @ModelAttribute("user") User user, SessionStatus status)
 	{
@@ -82,6 +106,12 @@ public class UserController {
 		return "adduser";
 	}
 	
+	/**
+	 * Displays all users in the database
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public String getAllUsers(Model model)
 	{
@@ -92,6 +122,13 @@ public class UserController {
 		return "allusers";
 	}
 	
+	/**
+	 * Edits user with given id
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/edit", method=RequestMethod.GET)
 	public String editUser(@RequestParam(value="id", required=true) Integer id, Model model)
 	{
@@ -102,19 +139,13 @@ public class UserController {
 	}
 	
 	/**
-	 * Initialize a new user so object exists before first call
-	 * @return user
+	 * Updates the edited user
+	 * 
+	 * @param model
+	 * @param user
+	 * @param status
+	 * @return
 	 */
-	@ModelAttribute("user")
-	public User initUser()
-	{
-		User user = new User();
-		user.setEmail("");
-		user.setFirstname("");
-		user.setLastname("");
-		return user;
-	}
-	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public String updateUser(Model model, @ModelAttribute("user") User user, SessionStatus status)
 	{
@@ -129,6 +160,13 @@ public class UserController {
 		return "redirect:all";
 	}
 	
+	/**
+	 * Deletes the specified user
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String deleteUser(@RequestParam(value="id", required=true) Integer id, Model model)
 	{

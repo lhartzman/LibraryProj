@@ -11,13 +11,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
  
 @Entity
-@Table(name="users")
+@Table(name="users", schema="library_schema")
 public class User {
      
+	public User(String firstname, String lastname, String email)
+	{
+		this.setFirstname(firstname);
+		this.setLastname(lastname);
+		this.setEmail(email);
+		this.setLibraryCard(new LibraryCard());
+	}
+	
+	public User()
+	{}
+	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int user_id;
@@ -89,5 +99,33 @@ public class User {
 		this.libraryCard = libraryCard;
 	}
 
+	@Override
+	public boolean equals(Object obj)
+	{
+		User u = (User)obj;
+		boolean result = false;
+		if (u == this)
+		{
+			result = true;
+		}
+		else
+		{
+			if (u.getUser_id() == this.user_id && u.getFirstname().equals(this.getFirstname()) &&
+					u.getLastname().equals(this.getLastname()) && u.getEmail().equals(this.getEmail()))
+			{
+				result = true;
+			}
+		}
+		return result;
+	}
+	
+	@Override
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("User Id = ").append(this.getUser_id()).append(" Firstname = ").append(this.getFirstname()).
+			append(" Lastname = ").append(this.getLastname()).append(" Email = ").append(this.getEmail());
+		return sb.toString();
+	}
    
 }

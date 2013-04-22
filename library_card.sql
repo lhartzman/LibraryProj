@@ -1,0 +1,6 @@
+CREATE TABLE `library_card` (
+  `card_id` int(11) NOT NULL AUTO_INCREMENT,
+  `start_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `expiration_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`card_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1
