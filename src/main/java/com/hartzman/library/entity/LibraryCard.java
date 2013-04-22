@@ -5,14 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
-import org.joda.time.Period;
 
 @Entity
-@Table(name="library_card")
+@Table(name="library_card", schema="library_schema")
 public class LibraryCard {
 
 	@Id
@@ -26,6 +26,23 @@ public class LibraryCard {
 	@Column(name="expiration_date")
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime expirationDate;
+
+	@OneToOne(mappedBy="libraryCard")
+	private User user;
+	
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	/**
 	 * @return the expirationDate
