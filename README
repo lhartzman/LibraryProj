@@ -1,0 +1,7 @@
+Sample project to demonstrate Spring MVC 3.1 and Hibernate 4.1.x
+
+History
+    3/31    Initial commit of basic code
+    4/22    Updated with some unit tests, updated comments, and support for H2 (mainly for tests)
+    
+    
