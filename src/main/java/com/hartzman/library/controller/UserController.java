@@ -1,6 +1,5 @@
 package com.hartzman.library.controller;
 
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -11,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -130,7 +127,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/edit", method=RequestMethod.GET)
-	public String editUser(@RequestParam(value="id", required=true) Integer id, Model model)
+	public String editUser(@RequestParam(value="id", required=true) Long id, Model model)
 	{
 		logger.info("editing user");
 		model.addAttribute("user", userService.getById(id));
@@ -168,7 +165,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String deleteUser(@RequestParam(value="id", required=true) Integer id, Model model)
+	public String deleteUser(@RequestParam(value="id", required=true) Long id, Model model)
 	{
 		logger.info("deleting user");
 		userService.deleteUser(id);

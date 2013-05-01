@@ -16,15 +16,10 @@ import com.hartzman.library.entity.LibraryCard;
 
 public interface UserService {
 
-	public int addUser(User user);
-
-	public List<User> getAllUsers();
-
-	public User updateUser(User user);
-
-	public User getById(Integer id);
+	public User addUser(User u);
+	List<User> getAllUsers();
+	User getById(Long id);
+	User updateUser(User u);
+	void deleteUser(Long id);
 	
-	public void deleteUser(Integer id);
-	
-	public void setUserDAO(UserDAO uDAO);
 }

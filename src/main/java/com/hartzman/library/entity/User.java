@@ -4,6 +4,7 @@ package com.hartzman.library.entity;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
  
 @Entity
-@Table(name="users", schema="library_schema")
+@Table(name="user", schema="library_schema")
 public class User {
      
 	public User(String firstname, String lastname, String email)
@@ -30,7 +31,8 @@ public class User {
 	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int user_id;
+    @Column(name="user_id")
+    private long id;
      
 	private String firstname;
      
@@ -80,15 +82,15 @@ public class User {
     /**
 	 * @return the user_id
 	 */
-	public int getUser_id() {
-		return user_id;
+	public long getId() {
+		return id;
 	}
 
 	/**
 	 * @param user_id the user_id to set
 	 */
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setId(long user_id) {
+		this.id = user_id;
 	}
 
 	public LibraryCard getLibraryCard() {
@@ -110,7 +112,7 @@ public class User {
 		}
 		else
 		{
-			if (u.getUser_id() == this.user_id && u.getFirstname().equals(this.getFirstname()) &&
+			if (u.getId() == this.id && u.getFirstname().equals(this.getFirstname()) &&
 					u.getLastname().equals(this.getLastname()) && u.getEmail().equals(this.getEmail()))
 			{
 				result = true;
@@ -123,7 +125,7 @@ public class User {
 	public String toString()
 	{
 		StringBuilder sb = new StringBuilder();
-		sb.append("User Id = ").append(this.getUser_id()).append(" Firstname = ").append(this.getFirstname()).
+		sb.append("User Id = ").append(this.getId()).append(" Firstname = ").append(this.getFirstname()).
 			append(" Lastname = ").append(this.getLastname()).append(" Email = ").append(this.getEmail());
 		return sb.toString();
 	}

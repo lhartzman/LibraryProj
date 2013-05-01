@@ -5,11 +5,8 @@ import java.util.List;
 
 import com.hartzman.library.entity.User;
 
-public interface UserDAO {
+public interface UserDAO extends GenericDAO<User, Long> {
 
-	public int addUser(User user);
-	public List<User> getAllUsers();
-	public User updateUser(User u);
-	public User getById(Integer id);
-	public void deleteUser(Integer id);
+	// no special methods currently
+	
 }

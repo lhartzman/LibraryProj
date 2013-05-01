@@ -31,8 +31,8 @@
     </thead>
     <tbody>
         <c:forEach items="${users}" var="user">
-            <c:url var='editURL' value='/users/edit?id=${user.user_id}' />
-            <c:url var='deleteURL' value='/users/delete?id=${user.user_id}' />
+            <c:url var='editURL' value='/users/edit?id=${user.id}' />
+            <c:url var='deleteURL' value='/users/delete?id=${user.id}' />
             <tr>
                 <td><c:out value="${user.firstname}" /></td>
                 <td><c:out value="${user.lastname}" /></td>

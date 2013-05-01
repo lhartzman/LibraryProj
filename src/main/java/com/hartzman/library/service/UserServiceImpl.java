@@ -23,14 +23,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 	
-	@Override
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
-	}
-
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	@Override
-	public int addUser(User user)
+	public User addUser(User user)
 	{
 		LibraryCard lc = new LibraryCard();
 		DateTime startDate = new DateTime();
@@ -38,15 +33,15 @@ public class UserServiceImpl implements UserService {
 		lc.setExpirationDate(expiration);
 		lc.setStartDate(startDate);
 		user.setLibraryCard(lc);
-		userDAO.addUser(user);
-		return user.getUser_id();
+		userDAO.add(user);
+		return user;
 	}
 	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	@Override
 	public List<User> getAllUsers()
 	{
-		return userDAO.getAllUsers();
+		return userDAO.getAll();
 	}
 	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
@@ -54,21 +49,22 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(User user)
 	{
 		logger.info("updating user");
-		userDAO.updateUser(user);
+		userDAO.update(user);
 		return user;
 	}
 	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	@Override
-	public User getById(Integer id)
+	public User getById(Long id)
 	{
 		return userDAO.getById(id);
 	}
 	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	@Override
-	public void deleteUser(Integer id)
+	public void deleteUser(Long id)
 	{
-		userDAO.deleteUser(id);
+		User u = userDAO.getById(id);
+		userDAO.delete(u);
 	}
 }

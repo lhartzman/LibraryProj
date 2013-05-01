@@ -50,7 +50,7 @@ public class UserServiceTest
     {
     	for (User u : users)
     	{
-    		userService.deleteUser(u.getUser_id());
+    		userService.deleteUser(u.getId());
     	}
     }
 
@@ -58,9 +58,9 @@ public class UserServiceTest
     public void testAddUser()
     {
     	User user = new User("Fred", "Farkel", "ffarkel@farkel.net");
-    	int id = userService.addUser(user);
+    	userService.addUser(user);
     	users.add(user);
-    	User insertedUser = userService.getById(id);
+    	User insertedUser = userService.getById(user.getId());
     	assertNotNull("Returned user is null", insertedUser);
     	assertEquals("Users not equal", user, insertedUser);
     }
