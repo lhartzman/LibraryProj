@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getAllUsers()
 	{
+		// return list of all users
 		return userDAO.getAll();
 	}
 	
@@ -49,8 +50,7 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(User user)
 	{
 		logger.info("updating user");
-		userDAO.update(user);
-		return user;
+		return userDAO.update(user);
 	}
 	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(Long id)
 	{
+		// removing user
 		User u = userDAO.getById(id);
 		userDAO.delete(u);
 	}

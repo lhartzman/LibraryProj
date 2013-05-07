@@ -12,10 +12,13 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hartzman.library.dao.GenericHibernateDAOImpl;
 import com.hartzman.library.dao.UserDAO;
 import com.hartzman.library.entity.User;
 import com.hartzman.library.service.UserService;
@@ -25,6 +28,7 @@ import com.hartzman.library.service.UserServiceImpl;
 @ContextConfiguration("classpath:test-context.xml")
 public class UserServiceTest
 {
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceTest.class);
 
     @Autowired
     private UserService userService;
@@ -60,9 +64,28 @@ public class UserServiceTest
     	User user = new User("Fred", "Farkel", "ffarkel@farkel.net");
     	userService.addUser(user);
     	users.add(user);
+    	logger.debug("(testAddUser):  just added user");
     	User insertedUser = userService.getById(user.getId());
     	assertNotNull("Returned user is null", insertedUser);
     	assertEquals("Users not equal", user, insertedUser);
+    }
+    
+    @Test
+    public void testUpdteUser()
+    {
+    	User u = new User("Fred", "Farkel", "ffarkel@farkel.net");
+    	
+    	// add the user
+    	userService.addUser(u);
+    	
+    	users.add(u);
+    	
+    	// modify a field and update the record
+    	u.setEmail("fred@farkel.net");
+    	userService.updateUser(u);
+    	
+    	User updatedUser = userService.getById(u.getId());
+    	assertEquals("Update of user did not work", u, updatedUser);
     }
     
     @Test
