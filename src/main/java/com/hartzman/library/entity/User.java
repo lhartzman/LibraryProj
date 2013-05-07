@@ -44,8 +44,9 @@ public class User {
     @JoinColumn(name="card_id")
     private LibraryCard libraryCard;
     
-	@OneToMany
-    private Set<LibraryItem> loanedItems;
+    // TBD
+//	@OneToMany
+//    private Set<LibraryItem> loanedItems;
     
     public String getFirstname() {
         return firstname;
@@ -71,13 +72,14 @@ public class User {
         this.email = email;
     }
 
-	public Set<LibraryItem> getLoanedItems() {
-		return loanedItems;
-	}
-
-	public void setLoanedItems(Set<LibraryItem> loanedItems) {
-		this.loanedItems = loanedItems;
-	}
+    // TBD
+//	public Set<LibraryItem> getLoanedItems() {
+//		return loanedItems;
+//	}
+//
+//	public void setLoanedItems(Set<LibraryItem> loanedItems) {
+//		this.loanedItems = loanedItems;
+//	}
 
     /**
 	 * @return the user_id

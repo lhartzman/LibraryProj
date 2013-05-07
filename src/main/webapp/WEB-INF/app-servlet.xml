@@ -19,7 +19,7 @@
 <!--     <beans:bean id="userService" class="com.hartzman.library.service.UserServiceImpl" /> -->
     
     <context:component-scan base-package="com.hartzman.library.controller" />
-<!--     <context:component-scan base-package="com.hartzman.library.dao" /> -->
+    <context:component-scan base-package="com.hartzman.library.dao" />
     <context:component-scan base-package="com.hartzman.library.service" />
     
     

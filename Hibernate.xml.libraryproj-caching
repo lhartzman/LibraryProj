@@ -19,7 +19,12 @@
       <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
          <property name="showSql" value="${hibernate.show_sql}" />
          <property name="databasePlatform" value="${hibernate.dialect}" />
-      </bean>
+    <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+    <property name="hibernate.cache.use_query_cache">true</property>
+    <property name="hibernate.cache.use_second_level_cache">true</property>
+    <property name="hibernate.cache.provider_configuration_file_resource_path">ehcache.xml</property>
+    <property name="hibernate.generate_statistics">true</property>
+         </bean>
    </property>
 </bean>
  
