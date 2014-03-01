@@ -1,6 +1,7 @@
 package com.hartzman.library.entity;
 
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,8 +17,10 @@ import javax.persistence.Table;
  
 @Entity
 @Table(name="user", schema="library_schema")
-public class User {
+public class User implements Serializable {
      
+	public static final long serialVersionUID = 42L;
+	
 	public User(String firstname, String lastname, String email)
 	{
 		this.setFirstname(firstname);

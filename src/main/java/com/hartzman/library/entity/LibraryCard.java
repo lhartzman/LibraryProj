@@ -1,5 +1,7 @@
 package com.hartzman.library.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,8 +15,10 @@ import org.joda.time.DateTime;
 
 @Entity
 @Table(name="library_card", schema="library_schema")
-public class LibraryCard {
+public class LibraryCard implements Serializable {
 
+	public static final long serialVersionUID = 42L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int card_id;
